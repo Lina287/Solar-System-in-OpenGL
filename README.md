@@ -1,72 +1,72 @@
 # Solar System in OpenGL
 
-This project is a small OpenGL/GLUT-based solar system visualization implemented in C++.
-It renders a stylized solar system with orbit rings, animated planets, and a
-light source-based planet drawing model.
+This repository contains a C++ OpenGL and FreeGLUT simulation of a simple solar
+system. The program creates a windowed visualization where a number of planets
+orbit around a central sun and draw their orbit paths.
+
+## Project output window
+
+The application opens a window titled `SolarSystem` and displays a grey canvas
+with a solar-system composition drawn in the middle of the scene.
+
+A representative runtime view is shown below:
+
+```text
++---------------------------------------------------------------------+
+| SolarSystem                              [ - ] [ □ ] [ × ]      |
+|                                                                     |
+|        grey background                                             |
+|                                                                     |
+|           .----------------- Orbit Rings -----------------..        |
+|          /        Sun / Planets / Orbit lines                     |
+|                                                                     |
+|          [Mercury] [Venus] [Earth] [Moon] [Mars]                   |
+|          [Jupiter] [Saturn] [Uranus] [Neptune]                    |
+|                                                                     |
++---------------------------------------------------------------------+
+```
+
+The actual GUI screenshot currently used in this workspace shows a grey main
+window and a central solar-system layout with ring orbit paths, coloured planet
+objects, and a bright highlighted sun.
 
 ## Features
 
-- OpenGL rendering pipeline using FreeGLUT for windowing and input callbacks
-- A central sun and orbiting planets with orbit radius visualization
-- Keyboard controls for camera movement and reset behavior
-- A window titled `SolarSystem` showing the rendered solar-system scene
+- OpenGL rendering pipeline using FreeGLUT callbacks
+- Animated planet/orbit drawing system
+- Lighting-related planet material settings
+- Keyboard-based camera/view adjustments through the `SolarSystem` class
+- Window title set to `SolarSystem`
 
 ## Visual project layout
 
-The program is organized around a small render loop and a data model for the
-stars/planets:
-
 ```text
-┌───────────────────────────────────────────────┐
-│                     main.cpp                   │
-│  GLUT window setup + input callback routing   │
-└───────────────────────┬───────────────────────┘
-                        │
-                        ▼
-┌───────────────────────────────────────────────┐
-│                 SolarSystem class               │
-│  Updates camera, orbit state, and redraw flow │
-└───────────────────────┬───────────────────────┘
-                        │
-                        ▼
-┌───────────────────────────────────────────────┐
-│                    stars.cpp                    │
-│  Star/Planet/LightPlanet drawing primitives   │
-└───────────────────────────────────────────────┘
+main.cpp
+  └─ GLUT setup, window title and main loop
+
+solarsystem.cpp
+  └─ Simulation state, view/camera update, planet population
+
+stars.cpp
+  └─ Drawing routines for stars, planets, orbit rings, and lighting
+
+stars.hpp / solarsystem.hpp
+  └─ Class definitions and OpenGL data structures
 ```
-
-## Output window
-
-When the program is launched, it opens a GLUT window titled `SolarSystem`.
-The visualization fills the main window with a grey background and displays an
-animated planetary orbit layout centered around the sun.
-
-The rendered scene is conceptually arranged as follows:
-
-```text
-           [Orbit Ring]
-               Sun
-      [Mercury]  [Venus]  [Earth] [Moon]
-       [Mars]   [Jupiter] [Saturn]
-      [Uranus] [Neptune]
-```
-
-A typical output view is a square OpenGL canvas with the sun at the center and
-planet objects moving along elliptical orbit paths.
 
 ## Requirements
 
-The project is built against the MSYS2/MinGW ucrt64 OpenGL toolchain and FreeGLUT
-runtime.
+This project is built against the MSYS2 `ucrt64` OpenGL and FreeGLUT runtime
+chain.
 
-Required native tooling and libraries:
+Required items:
 
-- C++ compiler (`g++`)
-- Make (`make`)
-- FreeGLUT (`freeglut`)
-- OpenGL headers and system libraries (`opengl32`, `glu32`)
+- `g++` compiler
+- `make`
+- FreeGLUT runtime and headers
+- OpenGL libraries (`opengl32`, `glu32`)
 
-The project Makefile expects the MSYS2 installation layout below:
+The Makefile expects the MSYS2 layout below:
 
 ```make
 CXX = C:/msys64/ucrt64/bin/g++.exe
@@ -76,14 +76,14 @@ LDFLAGS = -L"C:/msys64/ucrt64/lib" -lfreeglut -lopengl32 -lglu32
 
 ## Build
 
-From the project root:
+Build from the project root:
 
 ```powershell
 $env:PATH = "C:\msys64\ucrt64\bin;C:\msys64\usr\bin;" + $env:PATH
 C:\msys64\usr\bin\make.exe
 ```
 
-Or from an MSYS2 shell:
+Or run from an MSYS2 shell:
 
 ```bash
 make
@@ -91,13 +91,13 @@ make
 
 ## Run
 
-The executable produced by the build is:
+The generated executable is:
 
 ```text
 solarsystem.exe
 ```
 
-Run it with:
+Run it from a desktop-capable Windows session with the runtime DLL path visible:
 
 ```powershell
 cd "c:\Users\LINA BHARAT NHAYADE\Desktop\Solar-System-in-OpenGL"
@@ -105,14 +105,15 @@ $env:PATH = "C:\msys64\ucrt64\bin;" + $env:PATH
 .\solarsystem.exe
 ```
 
-The application uses GLUT callbacks and remains active until the window is closed or
-it receives a termination key input.
+The application remains active in the GLUT event loop until the window is closed
+or a termination key press is handled by the code.
 
 ## Project files
 
-- `main.cpp` initializes GLUT, sets the window title, and starts the main loop
-- `stars.cpp` performs planet/star drawing and orbit rendering
-- `solarsystem.cpp` implements the simulation update loop and camera state
-- `solarsystem.hpp` and `stars.hpp` declare the application classes and structures
-- `Makefile` defines the build steps for the project
+- [main.cpp](main.cpp) initializes GLUT, sets the window title, and enters the main loop.
+- [stars.cpp](stars.cpp) draws planets, stars, and orbit ring paths.
+- [solarsystem.cpp](solarsystem.cpp) manages the solar-system update cycle and camera state.
+- [solarsystem.hpp](solarsystem.hpp) and [stars.hpp](stars.hpp) define the project class model.
+- [Makefile](Makefile) contains the build command sequence.
+
 
