@@ -11,11 +11,48 @@ light source-based planet drawing model.
 - Keyboard controls for camera movement and reset behavior
 - A window titled `SolarSystem` showing the rendered solar-system scene
 
+## Visual project layout
+
+The program is organized around a small render loop and a data model for the
+stars/planets:
+
+```text
+┌───────────────────────────────────────────────┐
+│                     main.cpp                   │
+│  GLUT window setup + input callback routing   │
+└───────────────────────┬───────────────────────┘
+                        │
+                        ▼
+┌───────────────────────────────────────────────┐
+│                 SolarSystem class               │
+│  Updates camera, orbit state, and redraw flow │
+└───────────────────────┬───────────────────────┘
+                        │
+                        ▼
+┌───────────────────────────────────────────────┐
+│                    stars.cpp                    │
+│  Star/Planet/LightPlanet drawing primitives   │
+└───────────────────────────────────────────────┘
+```
+
 ## Output window
 
 When the program is launched, it opens a GLUT window titled `SolarSystem`.
 The visualization fills the main window with a grey background and displays an
 animated planetary orbit layout centered around the sun.
+
+The rendered scene is conceptually arranged as follows:
+
+```text
+           [Orbit Ring]
+               Sun
+      [Mercury]  [Venus]  [Earth] [Moon]
+       [Mars]   [Jupiter] [Saturn]
+      [Uranus] [Neptune]
+```
+
+A typical output view is a square OpenGL canvas with the sun at the center and
+planet objects moving along elliptical orbit paths.
 
 ## Requirements
 
