@@ -4,19 +4,6 @@ This repository contains a C++ OpenGL and FreeGLUT simulation of a simple solar
 system. The program creates a windowed visualization where a number of planets
 orbit around a central sun and draw their orbit paths.
 
-## Project output window
-
-The application opens a window titled `SolarSystem` and displays a grey canvas
-with a solar-system composition drawn in the middle of the scene.
-
-The actual project output window is shown below as a repository image asset:
-
-![SolarSystem output window](docs/solar-system-output.svg)
-
-This screenshot-style SVG represents the current OpenGL rendering target: a grey
-application frame, orbit ring paths, color-coded planet bodies, and a central
-sun/planet layout.
-
 ## Features
 
 - OpenGL rendering pipeline using FreeGLUT callbacks
