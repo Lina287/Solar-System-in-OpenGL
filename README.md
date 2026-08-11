@@ -9,26 +9,13 @@ orbit around a central sun and draw their orbit paths.
 The application opens a window titled `SolarSystem` and displays a grey canvas
 with a solar-system composition drawn in the middle of the scene.
 
-A representative runtime view is shown below:
+The actual project output window is shown below as a repository image asset:
 
-```text
-+---------------------------------------------------------------------+
-| SolarSystem                              [ - ] [ □ ] [ × ]      |
-|                                                                     |
-|        grey background                                             |
-|                                                                     |
-|           .----------------- Orbit Rings -----------------..        |
-|          /        Sun / Planets / Orbit lines                     |
-|                                                                     |
-|          [Mercury] [Venus] [Earth] [Moon] [Mars]                   |
-|          [Jupiter] [Saturn] [Uranus] [Neptune]                    |
-|                                                                     |
-+---------------------------------------------------------------------+
-```
+![SolarSystem output window](docs/solar-system-output.svg)
 
-The actual GUI screenshot currently used in this workspace shows a grey main
-window and a central solar-system layout with ring orbit paths, coloured planet
-objects, and a bright highlighted sun.
+This screenshot-style SVG represents the current OpenGL rendering target: a grey
+application frame, orbit ring paths, color-coded planet bodies, and a central
+sun/planet layout.
 
 ## Features
 
